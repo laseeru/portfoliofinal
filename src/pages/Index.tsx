@@ -57,7 +57,7 @@ const Index = () => {
             <div className="flex justify-center lg:justify-end animate-fade-up delay-200">
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-br from-accent/30 to-transparent rounded-full blur-2xl" />
-                <img alt="Abdul-Rashid Dasana Abdulai" className="relative w-72 h-72 md:w-96 md:h-96 object-cover rounded-full border-4 border-primary-foreground/20 shadow-2xl" src="/lovable-uploads/cf79140a-49df-48f8-905f-3fafd00c323b.png" />
+                <img alt="Abdul-Rashid Dasana Abdulai" className="relative w-72 h-72 md:w-96 md:h-96 object-cover object-top rounded-full border-4 border-primary-foreground/20 shadow-2xl" src="/lovable-uploads/cf79140a-49df-48f8-905f-3fafd00c323b.png" />
               </div>
             </div>
           </div>

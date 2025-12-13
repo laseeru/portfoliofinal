@@ -23,19 +23,22 @@ const Index = () => {
                 I’m Abdul-Rashid Dasana Abdulai — an MD candidate in Havana using clinical AI to make medical education and healthcare more accessible, starting with Cuba.
               </p>
               
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4 items-center">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium">
                   <a href="#featured">
                     View my work
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-                  <a href="/AbdulRashid_CV.pdf" target="_blank" rel="noopener noreferrer">
-                    <FileText className="mr-2 h-5 w-5" />
-                    Download CV
-                  </a>
-                </Button>
+                <div className="flex flex-col items-center gap-1">
+                  <Button asChild variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                    <a href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view" target="_blank" rel="noopener noreferrer">
+                      <FileText className="mr-2 h-5 w-5" />
+                      Download CV
+                    </a>
+                  </Button>
+                  <span className="text-[10px] text-primary-foreground/60 tracking-wide">Last updated: December 2025</span>
+                </div>
               </div>
             </div>
             
@@ -137,15 +140,21 @@ const Index = () => {
               </div>
               
               <div className="relative min-h-[400px] lg:min-h-full bg-secondary/20 flex items-center justify-center p-8">
-                 {/* Placeholder for screenshots */}
+                 {/* Screenshots */}
                  <div className="grid grid-cols-1 gap-4 w-full max-w-md">
-                    <div className="bg-background border border-border rounded-lg shadow-xl aspect-video flex items-center justify-center text-muted-foreground">
-                        {/* TODO: Add MedEstudia Screenshot 1 */}
-                        <span>App Screenshot 1</span>
+                    <div className="bg-background border border-border rounded-lg shadow-xl aspect-video overflow-hidden flex items-center justify-center">
+                        <img 
+                            src="/medestudia-1.png" 
+                            alt="MedEstudia Screenshot 1" 
+                            className="w-full h-full object-cover" 
+                        />
                     </div>
-                    <div className="bg-background border border-border rounded-lg shadow-xl aspect-video flex items-center justify-center text-muted-foreground translate-x-8 -mt-12 hidden md:flex">
-                        {/* TODO: Add MedEstudia Screenshot 2 */}
-                        <span>App Screenshot 2</span>
+                    <div className="bg-background border border-border rounded-lg shadow-xl aspect-video overflow-hidden translate-x-8 -mt-12 hidden md:block">
+                        <img 
+                            src="/medestudia-2.png" 
+                            alt="MedEstudia Screenshot 2" 
+                            className="w-full h-full object-cover" 
+                        />
                     </div>
                  </div>
               </div>
@@ -260,8 +269,7 @@ const Index = () => {
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
-              {/* TODO: Add real LinkedIn URL */}
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/blaseeru/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="mr-2 h-5 w-5" />
                 LinkedIn
               </a>

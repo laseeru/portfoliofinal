@@ -57,7 +57,7 @@ const Navbar = () => {
               </a>
             ))}
             <Button asChild variant="default" size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <a href="/AbdulRashid_CV.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view" target="_blank" rel="noopener noreferrer">
                 CV
               </a>
             </Button>
@@ -88,7 +88,7 @@ const Navbar = () => {
               </a>
             ))}
              <a
-                href="/AbdulRashid_CV.pdf"
+                href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block py-3 text-sm font-medium transition-colors text-accent hover:text-accent/80"

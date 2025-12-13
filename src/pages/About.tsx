@@ -53,9 +53,11 @@ const About = () => {
                 my journey has been defined by a relentless pursuit of knowledge and a commitment to making 
                 healthcare accessible to underserved communities.
               </p>
-              <Button className="mt-6 bg-accent hover:bg-accent/90">
-                <Download className="mr-2 h-4 w-4" />
-                Download CV
+              <Button asChild className="mt-6 bg-accent hover:bg-accent/90 text-accent-foreground">
+                <a href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view" target="_blank" rel="noopener noreferrer">
+                  <Download className="mr-2 h-4 w-4" />
+                  Download CV
+                </a>
               </Button>
             </div>
             

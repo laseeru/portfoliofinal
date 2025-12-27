@@ -45,7 +45,7 @@ const About = () => {
               </h1>
               <p className="text-muted-foreground mt-6 leading-relaxed">
                 I am Abdul-Rashid Dasana Abdulai, a medical student currently training in Cuba with a background 
-                in computer engineering from KNUST, Ghana. My unique path has shaped my vision of healthcare - 
+                in computer engineering from KNUST, Ghana. My unique path has shaped my vision of healthcare, 
                 one where cutting-edge AI meets compassionate medicine.
               </p>
               <p className="text-muted-foreground mt-4 leading-relaxed">

@@ -28,7 +28,7 @@ const projects = [
   },
   {
     id: 4,
-    title: "Youth Vision Assembly 2025 — AI in Healthcare",
+    title: "Youth Vision Assembly 2025 - AI in Healthcare",
     summary: "Presented on the transformative potential of artificial intelligence in healthcare at the international YVA Summit in Amsterdam, Netherlands.",
     tags: ["Public Speaking", "AI", "Global Health"],
     status: "Completed",

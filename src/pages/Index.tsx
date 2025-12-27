@@ -20,7 +20,7 @@ const Index = () => {
               </h1>
               
               <p className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mx-auto lg:mx-0">
-                I’m Abdul-Rashid Dasana Abdulai — an MD candidate in Havana using clinical AI to make medical education and healthcare more accessible, starting with Cuba.
+                I’m Abdul-Rashid Dasana Abdulai - an MD candidate in Havana using clinical AI to make medical education and healthcare more accessible, starting with Cuba.
               </p>
               
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4 items-center">
@@ -63,7 +63,7 @@ const Index = () => {
                   I’m a final-year medical student at the University of Medical Sciences in Havana, working at the intersection of clinical medicine, AI, and global health.
                 </p>
                 <p>
-                  Most AI tools don’t work well — or at all — in Cuba. Internet is slow, models are blocked, and students often rely on outdated or inaccessible textbooks. I build lightweight, constraint-aware tools that actually work in this environment.
+                  Most AI tools don’t work well - or at all - in Cuba. Internet is slow, models are blocked, and students often rely on outdated or inaccessible textbooks. I build lightweight, constraint-aware tools that actually work in this environment.
                 </p>
                 <p>
                   Recently, I placed 3rd in the Monash Global Medical AI Challenge with MedEstudia, an AI study assistant tailored to Cuban medical students and powered by DeepSeek to bypass local model restrictions. I’m now exploring ways to scale this work across other low-resource settings.
@@ -130,7 +130,7 @@ const Index = () => {
                   </ul>
                   <div className="pt-2">
                     <p className="text-sm font-medium text-foreground">Outcome:</p>
-                    <p className="text-sm text-muted-foreground">3rd Place — Monash Global Medical AI Challenge 2025 (solo competitor)</p>
+                    <p className="text-sm text-muted-foreground">3rd Place - Monash Global Medical AI Challenge 2025 (solo competitor)</p>
                   </div>
                 </div>
                 
@@ -258,7 +258,7 @@ const Index = () => {
                 <Award className="h-6 w-6 text-accent" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">3rd Place — Monash Global Medical AI Challenge 2025</h3>
+                <h3 className="text-xl font-bold">3rd Place - Monash Global Medical AI Challenge 2025</h3>
                 <p className="text-muted-foreground mt-1">Certificate of Excellence (solo competitor)</p>
               </div>
             </div>
@@ -291,7 +291,7 @@ const Index = () => {
         <div className="container mx-auto px-4 md:px-6 text-center max-w-2xl">
           <h2 className="section-heading mb-6">Let's Connect</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            If you’re working on clinical AI, global health, or med-ed tools — I’d love to talk.
+            If you’re working on clinical AI, global health, or med-ed tools - I’d love to talk.
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">

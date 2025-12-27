@@ -36,7 +36,7 @@ const Contact = () => {
           </h1>
           <p className="text-primary-foreground/70 mt-6 max-w-2xl mx-auto">
             Whether you're interested in research collaboration, have questions about my work, 
-            or just want to say hello — I'd love to hear from you.
+            or just want to say hello - I'd love to hear from you.
           </p>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Mail, Database, Brain, Network, Award, ExternalLink, Github, Linkedin, Microscope, Globe } from "lucide-react";
+import { ArrowRight, FileText, Mail, Database, Brain, Network, Award, ExternalLink, Github, Linkedin, Microscope, Globe, ClipboardList, Heart, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
@@ -81,7 +81,7 @@ const Index = () => {
                   </div>
                   <div>
                     <span className="block text-muted-foreground">Focus</span>
-                    <span className="font-medium text-foreground">Clinical AI, Medical Education, Low-resource Healthcare</span>
+                    <span className="font-medium text-foreground">Medical AI, Low-resource Deployment, Clinical Decision Support, AI for Medical Education</span>
                   </div>
                   <div>
                     <span className="block text-muted-foreground">Currently</span>
@@ -118,18 +118,20 @@ const Index = () => {
                 </div>
                 
                 <p className="text-muted-foreground leading-relaxed">
-                  MedEstudia is an AI-powered web app that helps preclinical Cuban medical students study more effectively, even with unstable internet and blocked models. It generates Cuban-context MCQs, quick quizzes, and structured explanations based on local guidelines. Under the hood, it uses DeepSeek as the core LLM because it’s one of the few models that runs reliably from Cuba, wrapped in a lightweight, offline-tolerant front-end.
+                  AI study assistant for Cuban medical students, designed for low-connectivity environments.
                 </p>
                 
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-foreground">Key Features:</h4>
+                  <h4 className="font-semibold text-foreground">Key Points:</h4>
                   <ul className="space-y-1 text-muted-foreground list-disc list-inside">
-                    <li>Generate MCQs on any medical topic with explanations</li>
-                    <li>5-question Quick Quiz mode for fast revision</li>
-                    <li>Explain Topic mode for structured, guideline-aligned summaries</li>
-                    <li>Local score tracking stored in the browser (no login needed)</li>
-                    <li>Designed for constrained networks and partially offline use</li>
+                    <li>MCQs + explanations for core medical topics</li>
+                    <li>Built for constrained settings (offline-tolerant workflow)</li>
+                    <li>Uses DeepSeek due to restricted access to other AI tools in Cuba</li>
                   </ul>
+                  <div className="pt-2">
+                    <p className="text-sm font-medium text-foreground">Outcome:</p>
+                    <p className="text-sm text-muted-foreground">3rd Place — Monash Global Medical AI Challenge 2025 (solo competitor)</p>
+                  </div>
                 </div>
                 
                 <div className="flex flex-wrap gap-2 pt-2">
@@ -174,57 +176,69 @@ const Index = () => {
             <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Microscope className="h-5 w-5 text-accent" />
-                  Globin Suite
+                  <ClipboardList className="h-5 w-5 text-accent" />
+                  AI Barriers Research (Cuban Clinics)
                 </CardTitle>
-                <CardDescription>AI Diagnostics for Low-Cost Devices</CardDescription>
+                <CardDescription>Research on barriers to implementing AI-powered diagnostics in low-resource Cuban clinical settings.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground text-sm">
-                  AI-assisted diagnostic tools (e.g., smartphone-based malaria and breast-cancer screening) aimed at resource-limited clinics in Africa.
+                <p className="text-muted-foreground text-sm mb-3">
+                  Survey + interview instruments (Spanish/English). Focus: infrastructure, workflow fit, trust, training, governance. Goal: practical mitigation strategies, not theory only.
                 </p>
+                <Button variant="ghost" size="sm" className="w-full mt-2">
+                  Read Summary
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </CardContent>
               <CardFooter className="flex flex-wrap gap-2">
-                 <Badge variant="outline" className="text-xs">Healthcare</Badge>
-                 <Badge variant="outline" className="text-xs">AI</Badge>
+                 <Badge variant="outline" className="text-xs">Research</Badge>
+                 <Badge variant="outline" className="text-xs">Global Health</Badge>
               </CardFooter>
             </Card>
             
             <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Network className="h-5 w-5 text-accent" />
-                  Nasari
+                  <Heart className="h-5 w-5 text-accent" />
+                  Precision Cardiology / Precision Medicine Drafts
                 </CardTitle>
-                <CardDescription>Micro-VC for African Student Founders</CardDescription>
+                <CardDescription>Exploring feasible pathways for precision medicine and AI decision support under data and resource constraints.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground text-sm">
-                  Micro-funding and AI tooling for young African builders: $100–$250 grants, mentorship, and rapid MVP sprints.
+                <p className="text-muted-foreground text-sm mb-3">
+                  Translational framing: what's realistic now vs later. Emphasis on feasibility, evaluation, and adoption realities.
                 </p>
+                <Button variant="ghost" size="sm" className="w-full mt-2">
+                  Draft Abstract
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </CardContent>
               <CardFooter className="flex flex-wrap gap-2">
-                 <Badge variant="outline" className="text-xs">VC</Badge>
-                 <Badge variant="outline" className="text-xs">Startups</Badge>
+                 <Badge variant="outline" className="text-xs">Precision Medicine</Badge>
+                 <Badge variant="outline" className="text-xs">Cardiology</Badge>
               </CardFooter>
             </Card>
             
             <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Database className="h-5 w-5 text-accent" />
-                  Cowrie
+                  <Lightbulb className="h-5 w-5 text-accent" />
+                  BioDesign / Fundora Work
                 </CardTitle>
-                <CardDescription>Payments & Agents</CardDescription>
+                <CardDescription>BioDesign-driven problem framing and instrument design for healthcare innovation.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground text-sm">
-                  Infrastructure experiments around enabling AI agents to safely handle on-chain payments with guardrails.
+                <p className="text-muted-foreground text-sm mb-3">
+                  Unmet-needs framing (Problem–Population–Payer–Outcome). Avoiding solution bias; defining measurable outcomes. Supporting research instrumentation and evaluation plans.
                 </p>
+                <Button variant="ghost" size="sm" className="w-full mt-2">
+                  Methods
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
               </CardContent>
               <CardFooter className="flex flex-wrap gap-2">
-                 <Badge variant="outline" className="text-xs">Blockchain</Badge>
-                 <Badge variant="outline" className="text-xs">AI Agents</Badge>
+                 <Badge variant="outline" className="text-xs">BioDesign</Badge>
+                 <Badge variant="outline" className="text-xs">Innovation</Badge>
               </CardFooter>
             </Card>
           </div>
@@ -244,8 +258,28 @@ const Index = () => {
                 <Award className="h-6 w-6 text-accent" />
               </div>
               <div>
-                <h3 className="text-xl font-bold">Monash Global Medical AI Challenge 2025 – 3rd Place</h3>
-                <p className="text-muted-foreground mt-1">For MedEstudia – solo founder finalist among teams from 19+ countries.</p>
+                <h3 className="text-xl font-bold">3rd Place — Monash Global Medical AI Challenge 2025</h3>
+                <p className="text-muted-foreground mt-1">Certificate of Excellence (solo competitor)</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-4 items-start p-6 glass-card rounded-xl">
+              <div className="bg-accent/20 p-3 rounded-full shrink-0">
+                <Award className="h-6 w-6 text-accent" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">Youth Vision Assembly 2025 Delegate</h3>
+                <p className="text-muted-foreground mt-1">Amsterdam, Netherlands</p>
+              </div>
+            </div>
+            
+            <div className="flex gap-4 items-start p-6 glass-card rounded-xl">
+              <div className="bg-accent/20 p-3 rounded-full shrink-0">
+                <Award className="h-6 w-6 text-accent" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold">CKODON Foundation Mentorship</h3>
+                <p className="text-muted-foreground mt-1">Mentee</p>
               </div>
             </div>
           </div>

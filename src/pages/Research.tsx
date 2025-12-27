@@ -7,15 +7,15 @@ import Layout from "@/components/Layout";
 const projects = [
   {
     id: 1,
-    title: "AI Barriers in Low-Resource Healthcare",
-    summary: "Investigating the challenges and opportunities for implementing AI-powered clinical decision support systems in resource-constrained healthcare settings in Cuba.",
+    title: "AI Barriers Research (Cuban Clinics)",
+    summary: "Research on barriers to implementing AI-powered diagnostics in low-resource Cuban clinical settings. Survey + interview instruments (Spanish/English). Focus: infrastructure, workflow fit, trust, training, governance. Goal: practical mitigation strategies, not theory only.",
     tags: ["AI", "Global Health", "Clinical Research"],
     status: "Ongoing",
   },
   {
     id: 2,
-    title: "Precision Cardiology in Cuba",
-    summary: "A comprehensive literature review and research initiative exploring personalized approaches to cardiovascular disease management in the Cuban healthcare system.",
+    title: "Precision Cardiology / Precision Medicine Drafts",
+    summary: "Exploring feasible pathways for precision medicine and AI decision support under data and resource constraints. Translational framing: what's realistic now vs later. Emphasis on feasibility, evaluation, and adoption realities.",
     tags: ["Precision Medicine", "Cardiology", "Literature Review"],
     status: "Ongoing",
   },
@@ -35,9 +35,9 @@ const projects = [
   },
   {
     id: 5,
-    title: "AI in Medical Education Initiative",
-    summary: "Collaborative project with Prof. Fundora exploring the integration of AI tools in medical education curricula to enhance learning outcomes.",
-    tags: ["AI", "Medical Education", "Curriculum Development"],
+    title: "BioDesign / Fundora Work",
+    summary: "BioDesign-driven problem framing and instrument design for healthcare innovation. Unmet-needs framing (Problem–Population–Payer–Outcome). Avoiding solution bias; defining measurable outcomes. Supporting research instrumentation and evaluation plans.",
+    tags: ["BioDesign", "Innovation", "Healthcare"],
     status: "Ongoing",
   },
 ];

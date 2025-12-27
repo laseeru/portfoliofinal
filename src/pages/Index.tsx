@@ -23,7 +23,7 @@ const Index = () => {
                 I’m Abdul-Rashid Dasana Abdulai, an MD candidate in Havana using clinical AI to make medical education and healthcare more accessible, starting with Cuba.
               </p>
               
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4 items-center">
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4 items-baseline">
                 <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium">
                   <a href="#featured">
                     View my work
@@ -31,7 +31,7 @@ const Index = () => {
                   </a>
                 </Button>
                 <div className="flex flex-col items-center gap-1">
-                  <Button asChild variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                  <Button asChild variant="outline" size="lg" className="border-primary-foreground/50 bg-white/15 backdrop-blur-sm text-primary-foreground hover:bg-white/25 hover:border-primary-foreground/70 font-medium shadow-md border-2">
                     <a href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view" target="_blank" rel="noopener noreferrer">
                       <FileText className="mr-2 h-5 w-5" />
                       Download CV

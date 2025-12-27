@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Mail, Database, Brain, Network, Award, ExternalLink, Github, Linkedin, Microscope, Globe, ClipboardList, Heart, Lightbulb } from "lucide-react";
+import { ArrowRight, FileText, Mail, Database, Brain, Network, Award, ExternalLink, Github, Linkedin, Microscope, Globe, ClipboardList, Heart, Lightbulb, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const Index = () => {
   return (
@@ -240,6 +241,181 @@ const Index = () => {
                  <Badge variant="outline" className="text-xs">AI</Badge>
                  <Badge variant="outline" className="text-xs">Medical Education</Badge>
               </CardFooter>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & Recognition */}
+      <section id="certifications" className="py-20">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-12">
+            <h2 className="section-heading">Certifications & Recognition</h2>
+          </div>
+          
+          {/* Primary Certifications */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-accent" />
+                  Certificate of Excellence
+                </CardTitle>
+                <CardDescription>Monash Global Medical AI Challenge (3rd Place)</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Issuer</p>
+                    <p className="text-sm font-medium text-foreground">Monash / Cao Lab × Nexus</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Year</p>
+                    <p className="text-sm font-medium text-foreground">2025</p>
+                  </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="w-full mt-4">
+                        View Certificate
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl">
+                      <img 
+                        src="/certificates/monash_ai_certificate.jpg" 
+                        alt="Monash Global Medical AI Challenge Certificate of Excellence"
+                        className="w-full h-auto rounded-lg"
+                      />
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <GraduationCap className="h-5 w-5 text-accent" />
+                  Youth Vision Assembly Delegate Certificate
+                </CardTitle>
+                <CardDescription>YVA Summit 2025</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Issuer</p>
+                    <p className="text-sm font-medium text-foreground">Youth Vision Assembly</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">Year</p>
+                    <p className="text-sm font-medium text-foreground">2025</p>
+                  </div>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" className="w-full mt-4">
+                        View Certificate
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl">
+                      <img 
+                        src="/certificates/YVA_cert.jpg" 
+                        alt="Youth Vision Assembly Delegate Certificate"
+                        className="w-full h-auto rounded-lg"
+                      />
+                    </DialogContent>
+                  </Dialog>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional Certifications */}
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <GraduationCap className="h-4 w-4 text-accent" />
+                  Supervised Machine Learning
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" size="sm" className="w-full">
+                      View Certificate
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl">
+                    <img 
+                      src="/certificates/Supervised_Machine_Learning_cert.png" 
+                      alt="Supervised Machine Learning Certificate"
+                      className="w-full h-auto rounded-lg"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/certificates/Supervised_Machine_Learning_cert.jpg";
+                      }}
+                    />
+                  </DialogContent>
+                </Dialog>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <GraduationCap className="h-4 w-4 text-accent" />
+                  AI for Breast Cancer Detection
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" size="sm" className="w-full">
+                      View Certificate
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl">
+                    <img 
+                      src="/certificates/ai_for_breast_cancer detection.png" 
+                      alt="AI for Breast Cancer Detection Certificate"
+                      className="w-full h-auto rounded-lg"
+                    />
+                  </DialogContent>
+                </Dialog>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <GraduationCap className="h-4 w-4 text-accent" />
+                  Python for Everybody — Specialty
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" size="sm" className="w-full">
+                      View Certificate
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl">
+                    <img 
+                      src="/certificates/python_for_everybody_specialty_cert.png" 
+                      alt="Python for Everybody Specialty Certificate"
+                      className="w-full h-auto rounded-lg"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = "/certificates/python_for_everybody_specialty_cert.jpg";
+                      }}
+                    />
+                  </DialogContent>
+                </Dialog>
+              </CardContent>
             </Card>
           </div>
         </div>

@@ -7,6 +7,7 @@ const navItems = [
   { name: "About", path: "#about" },
   { name: "MedEstudia", path: "#featured" },
   { name: "Projects", path: "#projects" },
+  { name: "Certifications", path: "#certifications" },
   { name: "Awards", path: "#awards" },
   { name: "Contact", path: "#contact" },
 ];

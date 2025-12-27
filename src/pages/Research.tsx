@@ -33,13 +33,6 @@ const projects = [
     tags: ["Public Speaking", "AI", "Global Health"],
     status: "Completed",
   },
-  {
-    id: 5,
-    title: "BioDesign / Fundora Work",
-    summary: "BioDesign-driven problem framing and instrument design for healthcare innovation. Unmet-needs framing (Problem–Population–Payer–Outcome). Avoiding solution bias; defining measurable outcomes. Supporting research instrumentation and evaluation plans.",
-    tags: ["BioDesign", "Innovation", "Healthcare"],
-    status: "Ongoing",
-  },
 ];
 
 const Research = () => {

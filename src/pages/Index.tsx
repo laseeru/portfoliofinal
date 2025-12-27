@@ -222,23 +222,23 @@ const Index = () => {
             <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Lightbulb className="h-5 w-5 text-accent" />
-                  BioDesign / Fundora Work
+                  <Brain className="h-5 w-5 text-accent" />
+                  GMDC AI Exam Assistant
                 </CardTitle>
-                <CardDescription>BioDesign-driven problem framing and instrument design for healthcare innovation.</CardDescription>
+                <CardDescription>AI-powered study tool for Ghanaian medical students preparing for licensing examinations.</CardDescription>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground text-sm mb-3">
-                  Unmet-needs framing (Problem–Population–Payer–Outcome). Avoiding solution bias; defining measurable outcomes. Supporting research instrumentation and evaluation plans.
+                  Developing an AI-powered study tool to help Ghanaian medical students prepare for licensing examinations through intelligent question generation and feedback.
                 </p>
                 <Button variant="ghost" size="sm" className="w-full mt-2">
-                  Methods
+                  Learn More
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </CardContent>
               <CardFooter className="flex flex-wrap gap-2">
-                 <Badge variant="outline" className="text-xs">BioDesign</Badge>
-                 <Badge variant="outline" className="text-xs">Innovation</Badge>
+                 <Badge variant="outline" className="text-xs">AI</Badge>
+                 <Badge variant="outline" className="text-xs">Medical Education</Badge>
               </CardFooter>
             </Card>
           </div>

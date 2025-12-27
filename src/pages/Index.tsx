@@ -309,8 +309,7 @@ const Index = () => {
               </a>
             </Button>
             <Button asChild variant="ghost" size="lg">
-              {/* TODO: Add real GitHub URL */}
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/laseeru" target="_blank" rel="noopener noreferrer">
                 <Github className="mr-2 h-5 w-5" />
                 GitHub
               </a>

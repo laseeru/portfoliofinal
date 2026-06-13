@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Mail, Database, Brain, Network, Award, ExternalLink, Github, Linkedin, Microscope, Globe, ClipboardList, Heart, Lightbulb, GraduationCap } from "lucide-react";
+import { ArrowRight, FileText, Mail, Award, ExternalLink, Github, Linkedin, ClipboardList, Heart, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Layout from "@/components/Layout";
@@ -119,15 +119,22 @@ const Index = () => {
                 </div>
                 
                 <p className="text-muted-foreground leading-relaxed">
-                  AI study assistant for Cuban medical students, designed for low-connectivity environments.
+                  Bilingual (ES/EN) AI study platform for Cuban medical students — featuring two learning pathways 
+                  (Preclinical & Clinical), four interactive study tools per subject, and a unique reflective chat 
+                  pedagogy. Powered by DeepSeek V3.1 via Vercel serverless functions. Built for low-connectivity 
+                  environments with localStorage-first persistence.
                 </p>
                 
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-foreground">Key Points:</h4>
+                  <h4 className="font-semibold text-foreground">Key Features:</h4>
                   <ul className="space-y-1 text-muted-foreground list-disc list-inside">
-                    <li>MCQs + explanations for core medical topics</li>
-                    <li>Built for constrained settings (offline-tolerant workflow)</li>
-                    <li>Uses DeepSeek due to restricted access to other AI tools in Cuba</li>
+                    <li>10 preclinical subjects + 5 clinical rotations with system-level drill-down</li>
+                    <li>MCQ Generator, Quick Quiz, Topic Explainer, and Chat Interface per topic</li>
+                    <li>Reflection-based pedagogical chat (classify → reflect → hint → explain)</li>
+                    <li>Clinical Guidelines module with structured step-by-step protocols</li>
+                    <li>Performance tracking with localStorage persistence — no login required</li>
+                    <li>Bilingual UI (Spanish default, English toggle) with AI responses in target language</li>
+                    <li>Uses DeepSeek V3.1 via serverless proxy to keep API keys secure</li>
                   </ul>
                   <div className="pt-2">
                     <p className="text-sm font-medium text-foreground">Outcome:</p>
@@ -136,9 +143,24 @@ const Index = () => {
                 </div>
                 
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {["Next.js", "TypeScript", "Tailwind CSS", "DeepSeek API"].map(tag => (
+                  {["React", "TypeScript", "Tailwind CSS", "DeepSeek V3.1", "Vercel Serverless", "Supabase"].map(tag => (
                     <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
                   ))}
+                </div>
+
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <Button asChild size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                    <a href="https://medestudia-v2.vercel.app" target="_blank" rel="noopener noreferrer">
+                      Visit Live Site
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" size="sm">
+                    <a href="https://github.com/laseeru/medestudia-v2" target="_blank" rel="noopener noreferrer">
+                      View Source
+                      <Github className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
                 </div>
               </div>
               
@@ -471,9 +493,8 @@ const Index = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              {/* TODO: Add real email */}
-              <a href="mailto:placeholder@email.com">
+                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
+              <a href="mailto:blaseeru@gmail.com">
                 <Mail className="mr-2 h-5 w-5" />
                 Email Me
               </a>

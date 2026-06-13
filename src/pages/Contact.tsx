@@ -1,30 +1,12 @@
-import { useState } from "react";
-import { Mail, Linkedin, MapPin, Send } from "lucide-react";
+import { Mail, Linkedin, MapPin, Send, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/Layout";
 
+const FORMSPREE_URL = "https://formspree.io/f/mvznvlgz";
+
 const Contact = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
-      setIsSubmitting(false);
-      (e.target as HTMLFormElement).reset();
-    }, 1000);
-  };
-
   return (
     <Layout>
       {/* Hero */}
@@ -63,7 +45,7 @@ const Contact = () => {
                 </a>
 
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/blaseeru/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="glass-card rounded-xl p-6 flex items-center gap-4 hover:shadow-lg transition-shadow"
@@ -101,7 +83,14 @@ const Contact = () => {
             <div className="animate-fade-up delay-200">
               <h2 className="text-2xl font-semibold text-foreground mb-6">Send a Message</h2>
               
-              <form onSubmit={handleSubmit} className="glass-card rounded-xl p-6 space-y-6">
+              <form
+                action={FORMSPREE_URL}
+                method="POST"
+                className="glass-card rounded-xl p-6 space-y-6"
+              >
+                <input type="text" name="_gotcha" className="hidden" />
+                <input type="hidden" name="_subject" value="Portfolio Contact Form" />
+                
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="text-sm font-medium text-foreground block mb-2">
@@ -121,7 +110,7 @@ const Contact = () => {
                     </label>
                     <Input
                       id="email"
-                      name="email"
+                      name="_replyto"
                       type="email"
                       placeholder="your@email.com"
                       required
@@ -159,18 +148,16 @@ const Contact = () => {
 
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
                   className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
                 >
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="ml-2 h-4 w-4" />
-                    </>
-                  )}
+                  Send Message
+                  <Send className="ml-2 h-4 w-4" />
                 </Button>
+
+                <p className="text-xs text-muted-foreground text-center">
+                  <CheckCircle className="inline h-3 w-3 mr-1" />
+                  Formspree handles delivery — no backend needed.
+                </p>
               </form>
             </div>
           </div>

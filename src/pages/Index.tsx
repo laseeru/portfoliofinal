@@ -114,7 +114,7 @@ const Index = () => {
             <p>
               I studied Computer Engineering at Kwame Nkrumah University of Science and Technology in Ghana before moving to Havana to study
               medicine at the Universidad de Ciencias Médicas de La Habana. I graduated as a Doctor of Medicine in July 2026 with a GPA of
-              4.8/5.0 and the Título de Oro.
+              4.8/5.0 and the Título de Oro (equivalent to summa cum laude).
             </p>
             <p>
               I kept programming throughout medical school, and over time the two fields became one line of work. Training where
@@ -227,7 +227,15 @@ const Index = () => {
                   {pub.authors} ({pub.year})
                 </p>
                 <p className="mt-1 font-serif text-xl leading-snug text-foreground" lang="es">
-                  {pub.title}
+                  {pub.url ? (
+                    <a href={pub.url} target="_blank" rel="noopener noreferrer" className="decoration-accent/40 underline-offset-4 hover:text-accent hover:underline">
+                      {pub.title}
+                      <ArrowUpRight aria-hidden="true" className="ml-1 inline h-4 w-4 align-baseline text-accent" />
+                      <span className="sr-only" lang="en"> (opens in a new tab)</span>
+                    </a>
+                  ) : (
+                    pub.title
+                  )}
                 </p>
                 {pub.translation && <p className="mt-1 text-sm italic text-muted-foreground">{pub.translation}</p>}
                 <p className="mt-1 text-sm text-foreground/80">{pub.venue}</p>

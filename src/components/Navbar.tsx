@@ -1,105 +1,70 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { name: "About", path: "#about" },
-  { name: "MedEstudia", path: "#featured" },
-  { name: "Projects", path: "#projects" },
-  { name: "Certifications", path: "#certifications" },
-  { name: "Awards", path: "#awards" },
-  { name: "Contact", path: "#contact" },
-];
+import { CV_URL, navItems, profile } from "@/content";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    e.preventDefault();
-    if (path.startsWith("#")) {
-      const element = document.getElementById(path.substring(1));
-      if (location.pathname === "/") {
-        element?.scrollIntoView({ behavior: "smooth" });
-      } else {
-        navigate("/");
-        // Wait for navigation to complete before scrolling
-        setTimeout(() => {
-          const element = document.getElementById(path.substring(1));
-          element?.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }
-    } else {
-      navigate(path);
-    }
-    setIsOpen(false);
-  };
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="text-lg font-semibold text-foreground tracking-tight" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            ARDA
-          </Link>
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
+      <nav aria-label="Main" className="page-container flex h-16 items-center justify-between">
+        <a href="/#top" className="font-serif text-lg font-medium tracking-tight text-foreground" onClick={() => setIsOpen(false)}>
+          {profile.name}
+        </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+        <ul className="hidden items-center gap-7 lg:flex">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <a href={`/#${item.id}`} className="nav-link">
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href={CV_URL} target="_blank" rel="noopener" className="btn-outline h-9 px-4">
+              CV
+            </a>
+          </li>
+        </ul>
+
+        <button
+          type="button"
+          className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground lg:hidden"
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsOpen((open) => !open)}
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      {isOpen && (
+        <div id="mobile-menu" className="border-t border-border bg-background lg:hidden">
+          <ul className="page-container py-3">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.path}
-                onClick={(e) => handleNavClick(e, item.path)}
-                className="text-sm font-medium transition-colors text-muted-foreground hover:text-foreground accent-underline"
-              >
-                {item.name}
-              </a>
+              <li key={item.id}>
+                <a href={`/#${item.id}`} onClick={() => setIsOpen(false)} className="block py-3 text-base text-foreground">
+                  {item.label}
+                </a>
+              </li>
             ))}
-            <Button asChild variant="default" size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <a href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view" target="_blank" rel="noopener noreferrer">
-                CV
+            <li>
+              <a href={CV_URL} target="_blank" rel="noopener" onClick={() => setIsOpen(false)} className="block py-3 text-base font-medium text-accent">
+                View CV (PDF)
               </a>
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+            </li>
+          </ul>
         </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-border/50 animate-fade-in bg-background">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.path}
-                onClick={(e) => handleNavClick(e, item.path)}
-                className="block py-3 text-sm font-medium transition-colors text-muted-foreground hover:text-foreground"
-              >
-                {item.name}
-              </a>
-            ))}
-             <a
-                href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block py-3 text-sm font-medium transition-colors text-accent hover:text-accent/80"
-              >
-                Download CV
-              </a>
-          </div>
-        )}
-      </div>
-    </nav>
+      )}
+    </header>
   );
 };
 

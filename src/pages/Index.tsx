@@ -1,519 +1,406 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Mail, Award, ExternalLink, Github, Linkedin, ClipboardList, Heart, GraduationCap } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { ArrowUpRight, FileText } from "lucide-react";
 import Layout from "@/components/Layout";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { CaseStudy, Section, StudyHeading } from "@/components/Section";
+import CertificateDialog from "@/components/CertificateDialog";
+import ContactForm from "@/components/ContactForm";
+import {
+  CV_URL,
+  courses,
+  education,
+  experience,
+  gmdcai,
+  heroFacts,
+  implementationStudy,
+  institutionalContribution,
+  interests,
+  languages,
+  medestudia,
+  mentorship,
+  path,
+  presentations,
+  profile,
+  publications,
+  recognition,
+  skills,
+  type PublicationStatus,
+} from "@/content";
+
+const statusStyles: Record<PublicationStatus, string> = {
+  Published: "border-accent/40 bg-accent/10 text-accent",
+  "Under review": "border-border text-muted-foreground",
+  Submitted: "border-border text-muted-foreground",
+};
+
+const ExternalLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+  <a href={href} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-1 font-medium">
+    {children}
+    <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+    <span className="sr-only">(opens in a new tab)</span>
+  </a>
+);
 
 const Index = () => {
+  const { hash } = useLocation();
+
+  // Scroll to the section when arriving via a redirected legacy URL (e.g. /about → /#about).
+  useEffect(() => {
+    if (!hash) return;
+    // Wait for web fonts so layout has settled before measuring the target's position.
+    document.fonts.ready.then(() => document.getElementById(hash.slice(1))?.scrollIntoView());
+  }, [hash]);
+
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center hero-gradient pt-16">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(174_72%_40%_/_0.1),_transparent_50%)]" />
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left space-y-6 animate-fade-up">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight">
-                Building AI tools for <span className="text-accent">students</span> and <span className="text-accent">patients</span> in low-resource settings.
-              </h1>
-              
-              <p className="text-lg md:text-xl text-primary-foreground/80 max-w-xl mx-auto lg:mx-0">
-                I’m Abdul-Rashid Dasana Abdulai, an MD candidate in Havana using clinical AI to make medical education and healthcare more accessible, starting with Cuba.
+      {/* Hero */}
+      <section id="top" aria-labelledby="hero-heading" className="py-16 md:py-24">
+        <div className="page-container grid items-center gap-12 md:grid-cols-[1fr_auto] lg:gap-20">
+          <div className="max-w-2xl">
+            <p className="eyebrow">{profile.roles.join(" · ")}</p>
+            <h1 id="hero-heading" className="mt-5 font-serif text-[2.6rem] font-medium leading-[1.05] tracking-tight text-foreground sm:text-6xl">
+              {profile.name}
+            </h1>
+            <p className="mt-5 font-serif text-xl italic text-accent sm:text-2xl">{profile.tagline}</p>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{profile.summary}</p>
+
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <a href="#research" className="btn-primary">
+                Research and projects
+              </a>
+              <a href={CV_URL} target="_blank" rel="noopener" className="btn-outline">
+                <FileText aria-hidden="true" className="h-4 w-4" />
+                View CV
+              </a>
+              <a href="#contact" className="link text-sm font-medium sm:ml-2">
+                Get in touch
+              </a>
+            </div>
+          </div>
+
+          <div className="mx-auto w-56 sm:w-64 md:w-72 lg:w-80">
+            <img
+              src="/images/portrait.jpg"
+              alt={`Portrait of ${profile.name}`}
+              width={733}
+              height={1100}
+              fetchPriority="high"
+              className="aspect-[4/5] w-full rounded-sm object-cover object-top"
+            />
+          </div>
+        </div>
+
+        <div className="page-container">
+          <dl className="mt-14 grid gap-6 border-t border-border pt-8 sm:grid-cols-3">
+            {heroFacts.map((fact) => (
+              <div key={fact.label}>
+                <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">{fact.label}</dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-foreground">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* About */}
+      <Section
+        id="about"
+        index="01"
+        title="About"
+        intro="I trained as an engineer before I trained as a doctor. My work sits where the two meet: how AI can be built, evaluated and adopted responsibly in health systems with limited resources."
+      >
+        <div className="grid gap-12 xl:grid-cols-[1fr_17rem]">
+          <div className="max-w-2xl space-y-5 text-[1.05rem] leading-relaxed text-foreground/90">
+            <p>
+              I studied Computer Engineering at Kwame Nkrumah University of Science and Technology in Ghana before moving to Havana to study
+              medicine at the Universidad de Ciencias Médicas de La Habana. I graduated as a Doctor of Medicine in July 2026 with a GPA of
+              4.8/5.0 and the Título de Oro.
+            </p>
+            <p>
+              I kept programming throughout medical school, and over time the two fields became one line of work. Training where
+              connections are slow, many AI services are unavailable and resources are stretched kept raising one question for me. The issue
+              was not whether a model performs well on a benchmark. It was whether it can be adopted safely and usefully where care
+              actually happens.
+            </p>
+            <p>
+              I now approach that question from several directions. I research the barriers to AI adoption in Cuban healthcare and medical
+              education. I build tools such as MedEstudia around real constraints. I evaluate large language models for clinical reasoning,
+              and I help colleagues build the capacity to develop these tools themselves.
+            </p>
+          </div>
+
+          <aside aria-label="Research interests">
+            <h3 className="eyebrow">Interests</h3>
+            <ul className="mt-4 space-y-2 text-sm text-foreground">
+              {interests.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+
+        <h3 className="eyebrow mt-16">Path</h3>
+        <ol className="mt-5 max-w-3xl divide-y divide-border border-y border-border">
+          {path.map((step) => (
+            <li key={step.title} className="grid gap-1 py-4 sm:grid-cols-[6.5rem_1fr] sm:gap-6">
+              <p className="font-mono text-sm text-accent sm:pt-0.5">{step.period}</p>
+              <p>
+                <span className="font-medium text-foreground">{step.title}</span>
+                <span className="text-muted-foreground"> — {step.detail}</span>
               </p>
-              
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4 items-baseline">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-medium">
-                  <a href="#featured">
-                    View my work
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
-                </Button>
-                <div className="flex flex-col items-center gap-1">
-                  <Button asChild variant="outline" size="lg" className="border-primary-foreground/50 bg-white/15 backdrop-blur-sm text-primary-foreground hover:bg-white/25 hover:border-primary-foreground/70 font-medium shadow-md border-2">
-                    <a href="https://drive.google.com/file/d/13fBPe2it9Lrn4u2nKoxXb3pPaEa0-xSB/view" target="_blank" rel="noopener noreferrer">
-                      <FileText className="mr-2 h-5 w-5" />
-                      Download CV
-                    </a>
-                  </Button>
-                  <span className="text-[10px] text-primary-foreground/60 tracking-wide">Last updated: December 2025</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex justify-center lg:justify-end animate-fade-up delay-200">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-br from-accent/30 to-transparent rounded-full blur-2xl" />
-                <img alt="Abdul-Rashid Dasana Abdulai" className="relative w-72 h-72 md:w-96 md:h-96 object-cover object-top rounded-full border-4 border-primary-foreground/20 shadow-2xl" src="/lovable-uploads/cf79140a-49df-48f8-905f-3fafd00c323b.png" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </li>
+          ))}
+        </ol>
+      </Section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="md:col-span-2 space-y-6">
-              <h2 className="section-heading">About Me</h2>
-              <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
-                <p>
-                  I’m a final-year medical student at the University of Medical Sciences in Havana, working at the intersection of clinical medicine, AI, and global health.
-                </p>
-                <p>
-                  Most AI tools don't work well (or at all) in Cuba. Internet is slow, models are blocked, and students often rely on outdated or inaccessible textbooks. I build lightweight, constraint-aware tools that actually work in this environment.
-                </p>
-                <p>
-                  Recently, I placed 3rd in the Monash Global Medical AI Challenge with MedEstudia, an AI study assistant tailored to Cuban medical students and powered by DeepSeek to bypass local model restrictions. I’m now exploring ways to scale this work across other low-resource settings.
-                </p>
-              </div>
-            </div>
-            
-            <div className="md:col-span-1">
-              <div className="glass-card rounded-xl p-6 space-y-4">
-                <h3 className="text-xl font-semibold text-foreground border-b border-border/50 pb-2">At a glance</h3>
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <span className="block text-muted-foreground">Location</span>
-                    <span className="font-medium text-foreground">Havana, Cuba</span>
-                  </div>
-                  <div>
-                    <span className="block text-muted-foreground">Focus</span>
-                    <span className="font-medium text-foreground">Medical AI, Low-resource Deployment, Clinical Decision Support, AI for Medical Education</span>
-                  </div>
-                  <div>
-                    <span className="block text-muted-foreground">Currently</span>
-                    <span className="font-medium text-foreground">MD Candidate & MedEstudia Founder</span>
-                  </div>
-                  <div>
-                    <span className="block text-muted-foreground">Looking for</span>
-                    <span className="font-medium text-foreground">Research positions / PhD opportunities in Clinical AI and Global Health</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Research */}
+      <Section
+        id="research"
+        index="02"
+        title="Research"
+        intro="My research asks what it takes for AI to be adopted responsibly in health systems with limited infrastructure, and what medical education needs in order to prepare for it."
+      >
+        <article aria-labelledby="study-implementation">
+          <StudyHeading id="study-implementation" title={implementationStudy.title} meta={implementationStudy.meta} />
+          <CaseStudy rows={implementationStudy.rows} />
+        </article>
 
-      {/* Featured Project Section */}
-      <section id="featured" className="py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-heading">Featured Project</h2>
+        <article aria-labelledby="study-capacity" className="mt-20">
+          <StudyHeading id="study-capacity" title={institutionalContribution.title} meta={institutionalContribution.meta} />
+          <CaseStudy rows={institutionalContribution.rows} />
+        </article>
+
+        <p className="mt-12 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Related work includes a literature review on artificial intelligence in maternal-fetal medicine, covering prenatal diagnosis and
+          risk prediction, which is now under review (see <a href="#publications" className="link">Publications</a>).
+        </p>
+      </Section>
+
+      {/* Projects */}
+      <Section id="projects" index="03" title="Projects">
+        <article aria-labelledby="project-medestudia">
+          <StudyHeading id="project-medestudia" title={medestudia.title} meta={medestudia.meta} subtitle={medestudia.subtitle} />
+
+          <div className="mb-8 flex flex-wrap gap-x-6 gap-y-2">
+            <ExternalLink href={medestudia.url}>Visit MedEstudia</ExternalLink>
+            <ExternalLink href={medestudia.source}>Source code</ExternalLink>
           </div>
-          
-          <div className="glass-card rounded-2xl overflow-hidden border border-accent/20">
-            <div className="grid lg:grid-cols-2 gap-0">
-              <div className="p-8 md:p-12 space-y-6 flex flex-col justify-center bg-card/50">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Badge className="bg-accent text-accent-foreground hover:bg-accent/90">3rd Place Winner</Badge>
-                    <span className="text-sm text-muted-foreground">Monash Global Medical AI Challenge 2025</span>
-                  </div>
-                  <h3 className="text-3xl font-bold text-foreground">MedEstudia</h3>
-                  <p className="text-xl text-accent font-medium mt-1">AI Medical Study Assistant for Cuban Students</p>
-                </div>
-                
-                <p className="text-muted-foreground leading-relaxed">
-                  Bilingual (ES/EN) AI study platform for Cuban medical students — featuring two learning pathways 
-                  (Preclinical & Clinical), four interactive study tools per subject, and a unique reflective chat 
-                  pedagogy. Powered by DeepSeek V3.1 via Vercel serverless functions. Built for low-connectivity 
-                  environments with localStorage-first persistence.
+
+          <figure className="mb-10 grid gap-4 sm:grid-cols-2">
+            <img
+              src="/images/medestudia-1.jpg"
+              alt="MedEstudia home screen with the Generate MCQs, Quick Quiz and Explain Topic tools"
+              width={1600}
+              height={902}
+              loading="lazy"
+              decoding="async"
+              className="w-full rounded-sm border border-border"
+            />
+            <img
+              src="/images/medestudia-2.jpg"
+              alt="MedEstudia Explain Topic screen with a field for entering a medical topic"
+              width={1600}
+              height={762}
+              loading="lazy"
+              decoding="async"
+              className="w-full self-start rounded-sm border border-border"
+            />
+            <figcaption className="text-sm text-muted-foreground sm:col-span-2">MedEstudia interface, shown here in English.</figcaption>
+          </figure>
+
+          <CaseStudy rows={[...medestudia.rows, { label: "Technology", body: medestudia.stack.join(" · ") }]} />
+        </article>
+
+        <article aria-labelledby="project-gmdcai" className="mt-20">
+          <StudyHeading id="project-gmdcai" title={gmdcai.title} meta={gmdcai.meta} subtitle={gmdcai.subtitle} />
+          <CaseStudy rows={gmdcai.rows} />
+        </article>
+      </Section>
+
+      {/* Publications */}
+      <Section id="publications" index="04" title="Publications">
+        <ol className="space-y-8">
+          {publications.map((pub) => (
+            <li key={pub.title} className="grid gap-3 sm:grid-cols-[1fr_auto] sm:gap-8">
+              <div className="max-w-3xl">
+                <p className="text-sm text-muted-foreground">
+                  {pub.authors} ({pub.year})
                 </p>
-                
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-foreground">Key Features:</h4>
-                  <ul className="space-y-1 text-muted-foreground list-disc list-inside">
-                    <li>10 preclinical subjects + 5 clinical rotations with system-level drill-down</li>
-                    <li>MCQ Generator, Quick Quiz, Topic Explainer, and Chat Interface per topic</li>
-                    <li>Reflection-based pedagogical chat (classify → reflect → hint → explain)</li>
-                    <li>Clinical Guidelines module with structured step-by-step protocols</li>
-                    <li>Performance tracking with localStorage persistence — no login required</li>
-                    <li>Bilingual UI (Spanish default, English toggle) with AI responses in target language</li>
-                    <li>Uses DeepSeek V3.1 via serverless proxy to keep API keys secure</li>
-                  </ul>
-                  <div className="pt-2">
-                    <p className="text-sm font-medium text-foreground">Outcome:</p>
-                    <p className="text-sm text-muted-foreground">3rd Place: Monash Global Medical AI Challenge 2025 (solo competitor)</p>
-                  </div>
-                </div>
-                
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {["React", "TypeScript", "Tailwind CSS", "DeepSeek V3.1", "Vercel Serverless", "Supabase"].map(tag => (
-                    <Badge key={tag} variant="secondary" className="text-xs">{tag}</Badge>
+                <p className="mt-1 font-serif text-xl leading-snug text-foreground" lang="es">
+                  {pub.title}
+                </p>
+                {pub.translation && <p className="mt-1 text-sm italic text-muted-foreground">{pub.translation}</p>}
+                <p className="mt-1 text-sm text-foreground/80">{pub.venue}</p>
+              </div>
+              <p className="sm:pt-1">
+                <span className={`inline-block whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-medium ${statusStyles[pub.status]}`}>
+                  {pub.status}
+                </span>
+              </p>
+            </li>
+          ))}
+        </ol>
+
+        <h3 className="eyebrow mt-16">Presentations</h3>
+        <ul className="mt-5 divide-y divide-border border-y border-border">
+          {presentations.map((p) => (
+            <li key={p.event} className="grid gap-1 py-5 sm:grid-cols-[1fr_auto] sm:gap-8">
+              <div>
+                <p className="font-medium text-foreground">{p.event}</p>
+                <p className="text-sm text-muted-foreground">{p.place}</p>
+                <p className="mt-2 text-[0.975rem] leading-relaxed text-foreground/90">{p.detail}</p>
+              </div>
+              <p className="text-sm text-muted-foreground sm:pt-0.5">{p.date}</p>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Experience */}
+      <Section id="experience" index="05" title="Experience">
+        <div className="space-y-10">
+          {experience.map((job) => (
+            <div key={job.role} className="grid gap-2 sm:grid-cols-[1fr_auto] sm:gap-8">
+              <div className="max-w-3xl">
+                <h3 className="text-lg font-medium text-foreground">{job.role}</h3>
+                <p className="text-muted-foreground">{job.org}</p>
+                <ul className="mt-3 space-y-1.5 text-[0.975rem] leading-relaxed text-foreground/90">
+                  {job.points.map((point) => (
+                    <li key={point} className="relative pl-4 before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2 before:bg-accent">
+                      {point}
+                    </li>
                   ))}
-                </div>
-
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <Button asChild size="sm" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                    <a href="https://medestudia-v2.vercel.app" target="_blank" rel="noopener noreferrer">
-                      Visit Live Site
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" size="sm">
-                    <a href="https://github.com/laseeru/medestudia-v2" target="_blank" rel="noopener noreferrer">
-                      View Source
-                      <Github className="ml-2 h-4 w-4" />
-                    </a>
-                  </Button>
-                </div>
+                </ul>
               </div>
-              
-              <div className="relative min-h-[400px] lg:min-h-full bg-secondary/20 flex items-center justify-center p-8">
-                 {/* Screenshots */}
-                 <div className="grid grid-cols-1 gap-4 w-full max-w-md">
-                    <div className="bg-background border border-border rounded-lg shadow-xl aspect-video overflow-hidden flex items-center justify-center">
-                        <img 
-                            src="/medestudia-1.png" 
-                            alt="MedEstudia Screenshot 1" 
-                            className="w-full h-full object-cover" 
-                        />
-                    </div>
-                    <div className="bg-background border border-border rounded-lg shadow-xl aspect-video overflow-hidden translate-x-8 -mt-12 hidden md:block">
-                        <img 
-                            src="/medestudia-2.png" 
-                            alt="MedEstudia Screenshot 2" 
-                            className="w-full h-full object-cover" 
-                        />
-                    </div>
-                 </div>
-              </div>
+              <p className="order-first text-sm text-muted-foreground sm:order-none sm:pt-1">{job.period}</p>
+            </div>
+          ))}
+          <div className="grid gap-2 sm:grid-cols-[1fr_auto] sm:gap-8">
+            <div>
+              <h3 className="text-lg font-medium text-foreground">{mentorship.title}</h3>
+              <p className="text-muted-foreground">{mentorship.org}</p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Other Projects Section */}
-      <section id="projects" className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-heading">Other Projects</h2>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <ClipboardList className="h-5 w-5 text-accent" />
-                  AI Barriers Research (Cuban Clinics)
-                </CardTitle>
-                <CardDescription>Research on barriers to implementing AI-powered diagnostics in low-resource Cuban clinical settings.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm mb-3">
-                  Survey + interview instruments (Spanish/English). Focus: infrastructure, workflow fit, trust, training, governance. Goal: practical mitigation strategies, not theory only.
-                </p>
-                <Button variant="ghost" size="sm" className="w-full mt-2">
-                  Read Summary
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-              <CardFooter className="flex flex-wrap gap-2">
-                 <Badge variant="outline" className="text-xs">Research</Badge>
-                 <Badge variant="outline" className="text-xs">Global Health</Badge>
-              </CardFooter>
-            </Card>
-            
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Heart className="h-5 w-5 text-accent" />
-                  Precision Cardiology / Precision Medicine Drafts
-                </CardTitle>
-                <CardDescription>Exploring feasible pathways for precision medicine and AI decision support under data and resource constraints.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm mb-3">
-                  Translational framing: what's realistic now vs later. Emphasis on feasibility, evaluation, and adoption realities.
-                </p>
-                <Button variant="ghost" size="sm" className="w-full mt-2">
-                  Draft Abstract
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-              <CardFooter className="flex flex-wrap gap-2">
-                 <Badge variant="outline" className="text-xs">Precision Medicine</Badge>
-                 <Badge variant="outline" className="text-xs">Cardiology</Badge>
-              </CardFooter>
-            </Card>
-            
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Brain className="h-5 w-5 text-accent" />
-                  GMDC AI Exam Assistant
-                </CardTitle>
-                <CardDescription>AI-powered study tool for Ghanaian medical students preparing for licensing examinations.</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm mb-3">
-                  Developing an AI-powered study tool to help Ghanaian medical students prepare for licensing examinations through intelligent question generation and feedback.
-                </p>
-                <Button variant="ghost" size="sm" className="w-full mt-2">
-                  Learn More
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardContent>
-              <CardFooter className="flex flex-wrap gap-2">
-                 <Badge variant="outline" className="text-xs">AI</Badge>
-                 <Badge variant="outline" className="text-xs">Medical Education</Badge>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications & Recognition */}
-      <section id="certifications" className="py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-heading">Certifications & Recognition</h2>
-          </div>
-          
-          {/* Primary Certifications */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="h-5 w-5 text-accent" />
-                  Certificate of Excellence
-                </CardTitle>
-                <CardDescription>Monash Global Medical AI Challenge (3rd Place)</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Issuer</p>
-                    <p className="text-sm font-medium text-foreground">Monash / Cao Lab × Nexus</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Year</p>
-                    <p className="text-sm font-medium text-foreground">2025</p>
-                  </div>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" size="sm" className="w-full mt-4">
-                        View Certificate
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-4xl">
-                      <img 
-                        src="/certificates/monash_ai_certificate.jpg" 
-                        alt="Monash Global Medical AI Challenge Certificate of Excellence"
-                        className="w-full h-auto rounded-lg"
-                      />
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <GraduationCap className="h-5 w-5 text-accent" />
-                  Youth Vision Assembly Delegate Certificate
-                </CardTitle>
-                <CardDescription>YVA Summit 2025</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Issuer</p>
-                    <p className="text-sm font-medium text-foreground">Youth Vision Assembly</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Year</p>
-                    <p className="text-sm font-medium text-foreground">2025</p>
-                  </div>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" size="sm" className="w-full mt-4">
-                        View Certificate
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="max-w-4xl">
-                      <img 
-                        src="/certificates/YVA_cert.jpg" 
-                        alt="Youth Vision Assembly Delegate Certificate"
-                        className="w-full h-auto rounded-lg"
-                      />
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Additional Certifications */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <GraduationCap className="h-4 w-4 text-accent" />
-                  Supervised Machine Learning
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" size="sm" className="w-full">
-                      View Certificate
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <img 
-                      src="/certificates/Supervised_Machine_Learning_cert.png" 
-                      alt="Supervised Machine Learning Certificate"
-                      className="w-full h-auto rounded-lg"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/certificates/Supervised_Machine_Learning_cert.jpg";
-                      }}
-                    />
-                  </DialogContent>
-                </Dialog>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <GraduationCap className="h-4 w-4 text-accent" />
-                  AI for Breast Cancer Detection
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" size="sm" className="w-full">
-                      View Certificate
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <img 
-                      src="/certificates/ai_for_breast_cancer detection.png" 
-                      alt="AI for Breast Cancer Detection Certificate"
-                      className="w-full h-auto rounded-lg"
-                    />
-                  </DialogContent>
-                </Dialog>
-              </CardContent>
-            </Card>
-
-            <Card className="glass-card border-border/50 bg-card/50 hover:bg-card/80 transition-colors">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-base">
-                  <GraduationCap className="h-4 w-4 text-accent" />
-                  Python for Everybody — Specialty
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button variant="ghost" size="sm" className="w-full">
-                      View Certificate
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <img 
-                      src="/certificates/python_for_everybody_specialty_cert.png" 
-                      alt="Python for Everybody Specialty Certificate"
-                      className="w-full h-auto rounded-lg"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = "/certificates/python_for_everybody_specialty_cert.jpg";
-                      }}
-                    />
-                  </DialogContent>
-                </Dialog>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Awards & Recognition */}
-      <section id="awards" className="py-20">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-12">
-            <h2 className="section-heading">Awards & Recognition</h2>
-          </div>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
-            <div className="flex gap-4 items-start p-6 glass-card rounded-xl">
-              <div className="bg-accent/20 p-3 rounded-full shrink-0">
-                <Award className="h-6 w-6 text-accent" />
-              </div>
+        <h3 className="eyebrow mt-16">Education</h3>
+        <ul className="mt-5 divide-y divide-border border-y border-border">
+          {education.map((ed) => (
+            <li key={ed.degree} className="grid gap-1 py-5 sm:grid-cols-[1fr_auto] sm:gap-8">
               <div>
-                <h3 className="text-xl font-bold">3rd Place: Monash Global Medical AI Challenge 2025</h3>
-                <p className="text-muted-foreground mt-1">Certificate of Excellence (solo competitor)</p>
+                <p className="font-medium text-foreground">{ed.degree}</p>
+                <p className="text-sm text-muted-foreground">{ed.org}</p>
+                {ed.note && <p className="mt-1 text-sm text-accent">{ed.note}</p>}
               </div>
-            </div>
-            
-            <div className="flex gap-4 items-start p-6 glass-card rounded-xl">
-              <div className="bg-accent/20 p-3 rounded-full shrink-0">
-                <Award className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">Youth Vision Assembly 2025 Delegate</h3>
-                <p className="text-muted-foreground mt-1">Amsterdam, Netherlands</p>
-              </div>
-            </div>
-            
-            <div className="flex gap-4 items-start p-6 glass-card rounded-xl">
-              <div className="bg-accent/20 p-3 rounded-full shrink-0">
-                <Award className="h-6 w-6 text-accent" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold">CKODON Foundation Mentorship</h3>
-                <p className="text-muted-foreground mt-1">Mentee</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              <p className="order-first text-sm text-muted-foreground sm:order-none">{ed.period}</p>
+            </li>
+          ))}
+        </ul>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4 md:px-6 text-center max-w-2xl">
-          <h2 className="section-heading mb-6">Let's Connect</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            If you’re working on clinical AI, global health, or med-ed tools, I'd love to talk.
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-              <a href="mailto:blaseeru@gmail.com">
-                <Mail className="mr-2 h-5 w-5" />
-                Email Me
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="https://www.linkedin.com/in/blaseeru/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="mr-2 h-5 w-5" />
-                LinkedIn
-              </a>
-            </Button>
-            <Button asChild variant="ghost" size="lg">
-              <a href="https://github.com/laseeru" target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-5 w-5" />
-                GitHub
-              </a>
-            </Button>
+        <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_16rem]">
+          <div>
+            <h3 className="eyebrow">Skills</h3>
+            <dl className="mt-5 grid gap-6 sm:grid-cols-2">
+              {skills.map((s) => (
+                <div key={s.group}>
+                  <dt className="font-medium text-foreground">{s.group}</dt>
+                  <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{s.items.join(" · ")}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div>
+            <h3 className="eyebrow">Languages</h3>
+            <dl className="mt-5 space-y-2 text-sm">
+              {languages.map((l) => (
+                <div key={l.name} className="flex justify-between gap-4 border-b border-border pb-2">
+                  <dt className="text-foreground">{l.name}</dt>
+                  <dd className="text-muted-foreground">{l.level}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
-      </section>
+
+        <h3 className="eyebrow mt-16">Continuing education</h3>
+        <ul className="mt-5 space-y-3 text-sm">
+          {courses.map((c) => (
+            <li key={c.title} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+              <span>
+                <span className="text-foreground">{c.title}</span>
+                <span className="text-muted-foreground"> · {c.issuer}, {c.date}</span>
+              </span>
+              <a href={c.verify} target="_blank" rel="noopener noreferrer" className="link shrink-0 text-muted-foreground">
+                Verify<span className="sr-only"> {c.title} certificate (opens in a new tab)</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Recognition */}
+      <Section id="recognition" index="06" title="Recognition">
+        <ul className="divide-y divide-border border-y border-border">
+          {recognition.map((r) => (
+            <li key={r.title} className="grid gap-1 py-5 sm:grid-cols-[6.5rem_1fr_auto] sm:gap-6">
+              <p className="font-mono text-sm text-muted-foreground sm:pt-0.5">{r.year}</p>
+              <div>
+                <p className="font-medium text-foreground">{r.title}</p>
+                <p className="text-sm text-muted-foreground">{r.issuer}</p>
+              </div>
+              {r.certificate && (
+                <div className="sm:pt-0.5">
+                  <CertificateDialog title={r.title} src={r.certificate.src} alt={r.certificate.alt} />
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Contact */}
+      <Section
+        id="contact"
+        index="07"
+        title="Contact"
+        intro="I'm open to research collaborations, fellowships and roles in medical AI, digital health and health-systems implementation."
+      >
+        <div className="grid gap-14 lg:grid-cols-[1fr_1.2fr]">
+          <dl className="space-y-5">
+            <div>
+              <dt className="eyebrow">Email</dt>
+              <dd className="mt-1">
+                <a href={`mailto:${profile.email}`} className="link text-lg">
+                  {profile.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="eyebrow">Elsewhere</dt>
+              <dd className="mt-1 flex flex-wrap gap-x-6 gap-y-1">
+                <ExternalLink href={profile.linkedin}>LinkedIn</ExternalLink>
+                <ExternalLink href={profile.github}>GitHub</ExternalLink>
+              </dd>
+            </div>
+            <div>
+              <dt className="eyebrow">CV</dt>
+              <dd className="mt-1">
+                <a href={CV_URL} target="_blank" rel="noopener" className="link">
+                  Download CV (PDF)
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="eyebrow">Location</dt>
+              <dd className="mt-1 text-foreground">
+                {profile.location} · from {profile.origin}
+              </dd>
+            </div>
+          </dl>
+
+          <ContactForm />
+        </div>
+      </Section>
     </Layout>
   );
 };

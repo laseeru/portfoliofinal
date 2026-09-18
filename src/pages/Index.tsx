@@ -114,7 +114,7 @@ const Index = () => {
             <p>
               I studied Computer Engineering at Kwame Nkrumah University of Science and Technology in Ghana before moving to Havana to study
               medicine at the Universidad de Ciencias Médicas de La Habana. I graduated as a Doctor of Medicine in July 2026 with a GPA of
-              4.8/5.0 and the Título de Oro (equivalent to summa cum laude).
+              4.8/5.0 and the Título de Oro (Summa Cum Laude).
             </p>
             <p>
               I kept programming throughout medical school, and over time the two fields became one line of work. Training where

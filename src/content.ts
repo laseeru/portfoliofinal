@@ -21,7 +21,7 @@ export const profile = {
 
 export const heroFacts = [
   { label: "Degree", value: "Doctor of Medicine, Universidad de Ciencias Médicas de La Habana, 2026" },
-  { label: "Distinction", value: "Título de Oro (equivalent to summa cum laude) · GPA 4.8 / 5.0" },
+  { label: "Distinction", value: "Título de Oro (Summa Cum Laude) · GPA 4.8 / 5.0" },
   { label: "Before medicine", value: "Computer Engineering, KNUST, Ghana" },
 ];
 
@@ -39,7 +39,7 @@ export const path = [
   { period: "2020–2026", title: "Doctor of Medicine", detail: "Universidad de Ciencias Médicas de La Habana, Cuba" },
   { period: "2025", title: "AI implementation research", detail: "Mixed-methods research on AI adoption in Cuban healthcare" },
   { period: "2025", title: "MedEstudia", detail: "AI medical education platform · 3rd place, Monash Global Medical AI Challenge" },
-  { period: "2026", title: "Graduated MD, Título de Oro", detail: "GPA 4.8 / 5.0 · equivalent to summa cum laude" },
+  { period: "2026", title: "Graduated MD, Título de Oro", detail: "GPA 4.8 / 5.0 · Summa Cum Laude" },
 ];
 
 export type CaseStudyRow = { label: string; body: string | string[] };
@@ -229,7 +229,7 @@ export const education = [
     degree: "Doctor of Medicine (MD)",
     org: "Universidad de Ciencias Médicas de La Habana, Havana, Cuba",
     period: "Mar 2020 – Jul 2026",
-    note: "GPA 4.8 / 5.0 · Título de Oro (equivalent to summa cum laude)",
+    note: "GPA 4.8 / 5.0 · Título de Oro (Summa Cum Laude)",
   },
   {
     degree: "Computer Engineering (coursework)",
@@ -282,7 +282,7 @@ export const recognition: {
   issuer: string;
   certificate?: { src: string; alt: string };
 }[] = [
-  { year: "2026", title: "Título de Oro", issuer: "Universidad de Ciencias Médicas de La Habana · equivalent to summa cum laude" },
+  { year: "2026", title: "Título de Oro (Summa Cum Laude)", issuer: "Universidad de Ciencias Médicas de La Habana" },
   {
     year: "2025",
     title: "3rd Place, Monash Global Medical AI Challenge",

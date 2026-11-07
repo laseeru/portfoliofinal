@@ -58,15 +58,15 @@ export const implementationStudy = {
     },
     {
       label: "My role",
-      body: "Research assistant working with faculty researchers: designing qualitative instruments, interviewing clinicians, synthesising evidence, and preparing ethics documentation, manuscripts and presentations.",
+      body: "Student investigator and project originator working with faculty researchers: formulating the research question, designing the mixed-methods protocol and survey and interview instruments, preparing the ethics submission, and synthesising evidence for manuscripts and presentations.",
     },
     {
       label: "Approach",
       body: [
         "Ethics-approved mixed-methods design under faculty supervision",
         "Literature review and evidence synthesis on clinical AI implementation, digital health and medical education",
-        "Semi-structured interviews with healthcare professionals; survey and interview instruments in Spanish and English",
-        "Qualitative analysis across infrastructure, workflow fit, trust, training and governance",
+        "National clinician survey and semi-structured interview guide, designed in Spanish and English; data collection ongoing, conducted by the research team in Cuba",
+        "Planned analysis across infrastructure, workflow fit, trust, training and governance",
       ],
     },
     {
@@ -208,7 +208,7 @@ export const experience = [
     period: "Jan 2025 – present",
     points: [
       "Mixed-methods research on barriers to implementing AI-powered diagnostic systems in Cuban healthcare",
-      "Qualitative instrument design and semi-structured interviews with clinicians",
+      "Designed the survey, interview guide, consent documents and ethics submission (approved); data collection ongoing",
       "Evidence synthesis on clinical AI implementation, digital health and medical education",
       "Manuscripts, ethics documentation and conference presentations with faculty researchers",
     ],
@@ -263,7 +263,7 @@ export const skills = [
   { group: "Clinical", items: ["Clinical reasoning", "Evidence-based medicine", "Differential diagnosis", "Medical education"] },
   {
     group: "AI / ML",
-    items: ["Large language models", "Retrieval-augmented generation (RAG)", "Prompt engineering", "AI evaluation", "PyTorch", "scikit-learn", "pandas"],
+    items: ["Large language models", "Retrieval-augmented generation (RAG)", "Prompt engineering", "AI evaluation", "Embeddings and vector search (pgvector, ChromaDB)", "scikit-learn (coursework)"],
   },
   { group: "Research", items: ["Mixed-methods research", "Qualitative research", "Evidence synthesis", "Scientific writing", "Research ethics"] },
   { group: "Programming and platforms", items: ["Python", "JavaScript", "Microsoft Azure AI / Foundry", "DeepSeek API", "Git and GitHub"] },

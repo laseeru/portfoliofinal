@@ -3,7 +3,8 @@
 
 export const SITE_URL = "https://portfoliofinal-gamma-two.vercel.app";
 
-// Export "CV for Turing.docx" to PDF and place it at public/cv/ with this exact filename.
+// Master academic CV (source: "Dexterity Time/CV Master/Abdulai_ARD_Master_Academic_CV.pdf").
+// To update the site, replace public/cv/Abdul-Rashid-Dasana-Abdulai-CV.pdf with the new export.
 export const CV_URL = "/cv/Abdul-Rashid-Dasana-Abdulai-CV.pdf";
 
 export const profile = {
